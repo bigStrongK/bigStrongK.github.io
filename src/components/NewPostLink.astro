@@ -1,0 +1,67 @@
+---
+type Props = { href: string };
+
+const { href } = Astro.props;
+---
+
+<a
+  href={href}
+  data-new-post-url={href}
+  class="text-accent whitespace-nowrap"
+  target="_blank"
+  rel="noopener noreferrer"
+  title="在 GitHub 新建文章"
+>
+  新建文章
+</a>
+
+<script>
+  function prepareNewPostLinks() {
+    document
+      .querySelectorAll<HTMLAnchorElement>("a[data-new-post-url]")
+      .forEach(link => {
+        function updateHref() {
+          const now = new Date();
+          const url = new URL(link.dataset.newPostUrl!);
+          url.searchParams.set(
+            "filename",
+            `post-${now.toISOString().replace(/\D/g, "")}.md`
+          );
+          url.searchParams.set(
+            "value",
+            `---
+title: "请填写文章标题"
+description: "请填写一句话简介"
+pubDatetime: ${now.toISOString()}
+tags:
+  - 技术
+draft: true
+---
+
+<!-- 写完后将 draft 改为 false，再提交即可发布。 -->
+
+## 要解决的问题
+
+写下问题背景。
+
+## 操作步骤
+
+1. 写下可复现的步骤。
+
+## 验证结果
+
+写下实际结果。
+`
+          );
+          link.href = url.href;
+        }
+
+        updateHref();
+        link.addEventListener("click", updateHref);
+        link.addEventListener("auxclick", updateHref);
+      });
+  }
+
+  prepareNewPostLinks();
+  document.addEventListener("astro:after-swap", prepareNewPostLinks);
+</script>
