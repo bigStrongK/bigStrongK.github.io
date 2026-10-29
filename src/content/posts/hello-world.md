@@ -1,15 +1,14 @@
 ---
-title: "用 Codex 和 GitHub Pages 上线个人博客"
-description: "从可复制的 Codex 提示词，到本地检查、公开发布和 Markdown 写作，记录这个博客的搭建过程。"
+title: 用 Codex 和 GitHub Pages 上线个人博客
+description: 从可复制的 Codex 提示词，到本地检查、公开发布和 Markdown 写作，记录这个博客的搭建过程。
 pubDatetime: 2026-10-14T00:00:00+08:00
 featured: true
-draft: false
+draft: true
 tags:
   - Codex
   - Astro
   - GitHub Pages
 ---
-
 这个博客由 Codex 协助搭建，方案是 **[AstroPaper](https://github.com/satnaing/astro-paper) + GitHub Pages**：用 Markdown 写文章，通过 GitHub Actions 自动构建和发布。
 
 下面是整理后可以复用的操作流程。
