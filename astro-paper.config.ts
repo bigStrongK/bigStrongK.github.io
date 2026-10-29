@@ -23,8 +23,7 @@ export default defineAstroPaperConfig({
     showArchives: true,
     showBackButton: true,
     editPost: {
-      enabled: true,
-      url: "https://github.com/bigStrongK/bigStrongK.github.io/edit/main/",
+      enabled: false,
     },
     search: "pagefind",
   },
