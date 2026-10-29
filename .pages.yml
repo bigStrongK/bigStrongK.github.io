@@ -1,0 +1,71 @@
+# Pages CMS authoring configuration for bigStrongK.github.io.
+# Before enabling: existing published posts must explicitly have draft: false.
+media:
+  input: public/images/posts
+  output: /images/posts
+  rename: safe
+  extensions: [png, jpg, jpeg, webp, gif]
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: src/content/posts
+    format: yaml-frontmatter
+    subfolders: false
+    filename:
+      template: "{year}-{month}-{day}-{hour}{minute}{second}.md"
+      field: create
+    operations:
+      create: true
+      rename: false
+      delete: false
+    view:
+      primary: title
+      fields: [title, pubDatetime, draft]
+      search: [title, description, tags]
+      sort: [pubDatetime, title]
+      default:
+        sort: pubDatetime
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: description
+        label: 摘要
+        type: text
+        required: true
+      - name: pubDatetime
+        label: 发布时间
+        type: string
+        required: true
+        description: "填写完整时间，例如 2026-10-29T10:00:00+08:00；编辑旧文章时保留原值。"
+        pattern:
+          regex: '^\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01])T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d{1,3})?(?:Z|[+-](?:[01]\d|2[0-3]):[0-5]\d)$'
+          message: "请填写包含秒和时区的 ISO 8601 时间。"
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+      - name: featured
+        label: 首页推荐
+        type: boolean
+        default: false
+      - name: draft
+        label: 草稿
+        type: boolean
+        default: true
+        description: "新文章默认草稿。取消勾选并保存后触发网站发布；草稿源码仍会保存在公开仓库中。"
+      - name: body
+        label: 正文
+        type: code
+        required: true
+        description: "使用 Markdown 源码编辑，保留代码块和内联 SVG。新建时可将文件名改为稳定的英文名称。"
+        options:
+          format: markdown
+settings:
+  content:
+    merge: true
+  commit:
+    identity: app
