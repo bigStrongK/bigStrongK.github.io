@@ -3,7 +3,7 @@ title: 安全 SDK 动态执行架构方案
 description: 一种由稳定控制底座、可更新解释器和动态业务程序构成的分层设计，讨论执行契约、资源边界、版本切换与故障恢复。
 pubDatetime: 2026-10-28T00:00:00+08:00
 featured: true
-draft: true
+draft: false
 tags:
   - 安全 SDK
   - 架构设计
