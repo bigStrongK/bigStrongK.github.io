@@ -3,7 +3,7 @@ title: 用 Codex 和 GitHub Pages 上线个人博客
 description: 从可复制的 Codex 提示词，到本地检查、公开发布和 Markdown 写作，记录这个博客的搭建过程。
 pubDatetime: 2026-10-14T00:00:00+08:00
 featured: true
-draft: true
+draft: false
 tags:
   - Codex
   - Astro
